@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Generate Data",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/generate_data.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Run Full Benchmark",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/compare_models.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}

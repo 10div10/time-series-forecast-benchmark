@@ -1,0 +1,9 @@
+pandas
+numpy
+matplotlib
+statsmodels
+pmdarima
+prophet
+neuralprophet
+lightgbm
+pytest

@@ -1,0 +1,7 @@
+model,MAE,RMSE,MAPE (%)
+Prophet,6.8,8.09,1.83
+ETS,7.67,9.82,2.06
+NeuralProphet,12.79,15.81,3.46
+ARIMA,14.74,16.74,3.96
+LightGBM,17.66,19.77,4.74
+SeasonalNaive,21.15,24.2,5.67

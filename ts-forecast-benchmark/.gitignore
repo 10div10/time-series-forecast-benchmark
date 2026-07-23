@@ -1,0 +1,13 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+*.egg-info/
+.ipynb_checkpoints/
+
+# Keep the demo comparison plot + metrics for the README, but ignore
+# any other generated artifacts (e.g. NeuralProphet lightning logs).
+lightning_logs/
+*.ckpt
