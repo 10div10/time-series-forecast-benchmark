@@ -40,7 +40,7 @@ tradeoff of recursive tree-based forecasting, not a bug.)*
 
 ### Comparison plot
 
-![Comparison Plot](outputs/comparison_plot.png)
+![Comparison Plot](ts-forecast-benchmark/outputs/comparison_plot.png)
 
 ## Project structure
 
