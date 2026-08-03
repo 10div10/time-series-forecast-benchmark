@@ -1,4 +1,4 @@
-# Time Series Forecast Benchmark
+# 📈 Time Series Forecast Benchmark
 
 A self-contained benchmark comparing six forecasting approaches — from a
 trivial seasonal-naive baseline up through classical statistical models,
@@ -8,27 +8,51 @@ sales series, evaluated on the same held-out test window.
 Comes with a synthetic data generator, so it runs end-to-end with zero
 external data dependencies — swap in your own CSV whenever you're ready.
 
-## Models compared
+![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white)
+![statsmodels](https://img.shields.io/badge/statsmodels-ETS-8A2BE2)
+![pmdarima](https://img.shields.io/badge/pmdarima-ARIMA-8A2BE2)
+![Prophet](https://img.shields.io/badge/Prophet-Meta-0866FF)
+![NeuralProphet](https://img.shields.io/badge/NeuralProphet-PyTorch-EE4C2C?logo=pytorch&logoColor=white)
+![LightGBM](https://img.shields.io/badge/LightGBM-Microsoft-02569B)
+![pytest](https://img.shields.io/badge/tests-pytest-0A9EDC?logo=pytest&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-green)
+
+## 🧰 Tech stack
+
+| Layer | Tool | Role |
+|---|---|---|
+| 🐍 Language | Python 3.9+ | Everything runs in one virtual environment |
+| 📊 Classical stats | `statsmodels` | ETS / Holt-Winters |
+| 🔍 Classical stats | `pmdarima` | Auto-ARIMA order search |
+| 🔮 Decomposition | `prophet` | Meta's trend + seasonality decomposition |
+| 🧠 Decomposition + NN | `neuralprophet` (PyTorch) | Prophet-style decomposition with an AR-Net component |
+| 🌳 Gradient boosting | `lightgbm` | Lag/rolling-feature recursive forecasting |
+| 📐 Evaluation | `numpy` | MAE / RMSE / MAPE |
+| 📉 Plotting | `matplotlib` | Comparison plot |
+| ✅ Testing | `pytest` | Metric unit tests |
+| 🖥️ Editor | VS Code | Pre-configured interpreter + launch configs |
+
+## 📊 Models compared
 
 | Model | Family | Notes |
 |---|---|---|
-| Seasonal Naive | Baseline | "Sales today = sales same weekday last week." Every other model should beat this. |
-| ETS (Holt-Winters) | Classical statistical | Additive trend + weekly seasonality (`statsmodels`) |
-| ARIMA | Classical statistical | `pmdarima.auto_arima` search over (p,d,q)(P,D,Q,m) |
-| Prophet | Decomposition | Trend + yearly + weekly seasonality (Meta's Prophet) |
-| NeuralProphet | Decomposition + AR-Net | Prophet-style decomposition plus a small autoregressive neural component |
-| LightGBM | Gradient-boosted trees | Lag features (1/2/3/7/14 days) + rolling stats + calendar features, recursive multi-step forecasting |
+| 🗓️ Seasonal Naive | Baseline | "Sales today = sales same weekday last week." Every other model should beat this. |
+| 📈 ETS (Holt-Winters) | Classical statistical | Additive trend + weekly seasonality (`statsmodels`) |
+| 〰️ ARIMA | Classical statistical | `pmdarima.auto_arima` search over (p,d,q)(P,D,Q,m) |
+| 🔮 Prophet | Decomposition | Trend + yearly + weekly seasonality (Meta's Prophet) |
+| 🧠 NeuralProphet | Decomposition + AR-Net | Prophet-style decomposition plus a small autoregressive neural component |
+| 🌳 LightGBM | Gradient-boosted trees | Lag features (1/2/3/7/14 days) + rolling stats + calendar features, recursive multi-step forecasting |
 
-## Results (synthetic demo data, 30-day holdout)
+## 🏆 Results (synthetic demo data, 30-day holdout)
 
-| Model | MAE | RMSE | MAPE (%) |
-|---|---|---|---|
-| Prophet | 6.80 | 8.09 | 1.83 |
-| ETS | 7.67 | 9.82 | 2.06 |
-| NeuralProphet | 12.79 | 15.81 | 3.46 |
-| ARIMA | 14.74 | 16.74 | 3.96 |
-| LightGBM | 17.66 | 19.77 | 4.74 |
-| Seasonal Naive | 21.15 | 24.20 | 5.67 |
+| Rank | Model | MAE | RMSE | MAPE (%) |
+|---|---|---|---|---|
+| 🥇 | Prophet | 6.80 | 8.09 | 1.83 |
+| 🥈 | ETS | 7.67 | 9.82 | 2.06 |
+| 🥉 | NeuralProphet | 12.79 | 15.81 | 3.46 |
+| 4 | ARIMA | 14.74 | 16.74 | 3.96 |
+| 5 | LightGBM | 17.66 | 19.77 | 4.74 |
+| 6 | Seasonal Naive | 21.15 | 24.20 | 5.67 |
 
 *(Numbers will vary slightly on your machine due to solver/training
 randomness. All six models beat the seasonal-naive baseline on this
@@ -42,7 +66,7 @@ tradeoff of recursive tree-based forecasting, not a bug.)*
 
 ![Comparison Plot](ts-forecast-benchmark/outputs/comparison_plot.png)
 
-## Project structure
+## 🗂️ Project structure
 
 ```
 ts-forecast-benchmark/
@@ -69,7 +93,7 @@ ts-forecast-benchmark/
 └── README.md
 ```
 
-## Setup (VS Code)
+## ⚙️ Setup (VS Code)
 
 1. Clone the repo and open the folder in VS Code.
 2. Create a virtual environment:
@@ -86,7 +110,7 @@ ts-forecast-benchmark/
    compile/initialize on first use — the first run may take noticeably
    longer than subsequent ones.
 
-## Usage
+## 🚀 Usage
 
 Generate the synthetic dataset:
 ```bash
@@ -106,7 +130,7 @@ Run tests:
 pytest tests/ -v
 ```
 
-## Using your own data
+## 📁 Using your own data
 
 Replace `data/sales_data.csv` with your own file, keeping two columns:
 
@@ -120,7 +144,7 @@ Then adjust in `src/compare_models.py`:
 - `seasonal_period` in `ArimaForecaster` / `seasonal_periods` in `ETSForecaster` — `7` for daily data with weekly patterns, `12` for monthly data with yearly patterns
 - `n_forecasts` in `NeuralProphetForecaster` — should match `TEST_DAYS` for a clean single multi-step forecast (see note below)
 
-## Known limitations
+## ⚠️ Known limitations
 
 - **NeuralProphet's multi-step forecast extraction is non-obvious.** NeuralProphet
   stores its `yhat1...yhatN` multi-step predictions on a diagonal across
@@ -145,6 +169,6 @@ Then adjust in `src/compare_models.py`:
   reflect performance on one 30-day window, not an average over multiple
   forecast origins.
 
-## License
+## 📄 License
 
 MIT — use freely.
